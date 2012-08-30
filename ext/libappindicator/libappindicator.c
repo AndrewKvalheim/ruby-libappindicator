@@ -62,6 +62,7 @@ APP_INDICATOR_SETTER2(icon_full, RVAL2CSTR, RVAL2CSTR);
 APP_INDICATOR_SETTER2(label, RVAL2CSTR, RVAL2CSTR);
 APP_INDICATOR_SETTER1(icon_theme_path, RVAL2CSTR);
 APP_INDICATOR_SETTER1(ordering_index, NUM2UINT);
+APP_INDICATOR_SETTER1(title, RVAL2CSTR);
 
 APP_INDICATOR_GETTER(id, CSTR2RVAL)
 APP_INDICATOR_GETTER(category, INT2NUM)
@@ -75,6 +76,7 @@ APP_INDICATOR_GETTER(menu, GOBJ2RVAL)
 APP_INDICATOR_GETTER(label, CSTR2RVAL)
 APP_INDICATOR_GETTER(label_guide, CSTR2RVAL)
 APP_INDICATOR_GETTER(ordering_index, UINT2NUM)
+APP_INDICATOR_GETTER(title, CSTR2RVAL)
 
 static VALUE ai_build_menu_from_desktop(VALUE self, VALUE desktop_file, VALUE desktop_profile) {
 	VALUE rAppIndicator = rb_iv_get(self,"@ai_instance");
@@ -110,6 +112,7 @@ Init_appindicator() {
 	rb_define_method(cAppIndicator, "set_label", ai_set_label, 2);
 	rb_define_method(cAppIndicator, "set_icon_theme_path", ai_set_icon_theme_path, 1);
 	rb_define_method(cAppIndicator, "set_ordering_index", ai_set_ordering_index, 1);
+	rb_define_method(cAppIndicator, "set_title", ai_set_title, 1);
 
 	rb_define_method(cAppIndicator, "get_id", ai_get_id, 0);
 	rb_define_method(cAppIndicator, "get_category", ai_get_category, 0);
@@ -123,6 +126,7 @@ Init_appindicator() {
 	rb_define_method(cAppIndicator, "get_label", ai_get_label, 0);
 	rb_define_method(cAppIndicator, "get_label_guide", ai_get_label_guide, 0);
 	rb_define_method(cAppIndicator, "get_ordering_index", ai_get_ordering_index, 0);
+	rb_define_method(cAppIndicator, "get_title", ai_get_title, 0);
 
 	rb_define_method(cAppIndicator, "build_menu_from_desktop", ai_build_menu_from_desktop, 2);
 }
